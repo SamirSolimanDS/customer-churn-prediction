@@ -1,5 +1,7 @@
 # Customer Churn Prediction
 
+🚀 **Live Demo:** https://customer-churn-samir.streamlit.app/
+
 ## Project Overview
 
 Customer Churn Prediction is a machine learning project that aims to
