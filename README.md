@@ -167,3 +167,47 @@ The model identifies 81.55% of customers who actually churned. However, its 50.8
 This threshold prioritizes identifying at-risk customers, which may help the company take preventive retention actions. The trade-off is that it may also lead to unnecessary retention offers.
 
 The best threshold depends on the business cost of missing a potential churner versus contacting a customer who would stay anyway.
+
+## Example Usage
+
+```python
+import joblib
+import pandas as pd
+
+# Load the trained model
+artifact = joblib.load("customer_churn_model.joblib")
+pipeline = artifact["pipeline"]
+threshold = artifact["threshold"]
+
+# Example customer data
+customer = pd.DataFrame([{
+    "gender": "Female",
+    "SeniorCitizen": 0,
+    "Partner": "Yes",
+    "Dependents": "No",
+    "tenure": 12,
+    "PhoneService": "Yes",
+    "MultipleLines": "No",
+    "InternetService": "DSL",
+    "OnlineSecurity": "No",
+    "OnlineBackup": "Yes",
+    "DeviceProtection": "No",
+    "TechSupport": "No",
+    "StreamingTV": "No",
+    "StreamingMovies": "No",
+    "Contract": "Month-to-month",
+    "PaperlessBilling": "Yes",
+    "PaymentMethod": "Electronic check",
+    "MonthlyCharges": 65.0,
+    "TotalCharges": 780.0
+}])
+
+# Predict churn probability
+probability = pipeline.predict_proba(customer)[0, 1]
+prediction = "Churn" if probability >= threshold else "No Churn"
+
+print("Prediction:", prediction)
+print("Churn Probability:", round(probability, 4))
+```
+
+*Note: This is an illustrative customer example, not a verified prediction for a real customer.*
