@@ -145,3 +145,25 @@ The pipeline automatically applies preprocessing before prediction.
 - Improve feature engineering.
 - Evaluate the model on new, unseen datasets.
 - Develop an interactive application for customer churn predictions.
+
+## Threshold Selection
+
+The Random Forest model uses a classification threshold of 0.40 to improve the detection of customers likely to churn.
+
+### Test Results
+
+| Metric | Score |
+|---|---:|
+| Accuracy | 74.17% |
+| Churn Precision | 50.83% |
+| Churn Recall | 81.55% |
+| Churn F1-score | 62.63% |
+| ROC-AUC | 83.97% |
+
+### Business Interpretation
+
+The model identifies 81.55% of customers who actually churned. However, its 50.83% precision means that many customers flagged as potential churners may not actually leave.
+
+This threshold prioritizes identifying at-risk customers, which may help the company take preventive retention actions. The trade-off is that it may also lead to unnecessary retention offers.
+
+The best threshold depends on the business cost of missing a potential churner versus contacting a customer who would stay anyway.
